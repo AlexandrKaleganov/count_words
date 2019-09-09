@@ -20,10 +20,11 @@ public interface Store<E> {
     /**
      * refactor close factory and close session
      *
-     * @param fank
-     * @param <E>
-     * @return
+     * @param fank метод который будем вызывать обновление удаление изменение запрос
+     * @param <E>  объект который мы получим
+     * @return объект получим в зависимости от реализации
      */
+    @SuppressWarnings("TypeParameterHidesVisibleType")
     default <E> E openSession(Function<Session, E> fank) {
         E rsl = null;
         try (Session session = S_FACTORY.getFactory().openSession()) {

@@ -10,8 +10,8 @@ import javax.persistence.*;
  * <b>содержит поля:<b/>
  */
 @Entity
-@Table(name = "users")
-public class Users extends AllModels {
+@Table(name = "user")
+public class User extends AllModels {
     @Column(name = "name")
     private String name;
     @Column(name = "login")
@@ -22,11 +22,11 @@ public class Users extends AllModels {
     @Column(name = "password")
     private String password;
 
-    public Users(int id) {
+    public User(int id) {
         super(id);
     }
 
-    public Users() {
+    public User() {
         super();
     }
 
@@ -64,7 +64,7 @@ public class Users extends AllModels {
 
     @Override
     public String toString() {
-        return "Users{" + "id=" + super.getId() + ", name='" + name + '\'' + ", login='"
+        return "User{" + "id=" + super.getId() + ", name='" + name + '\'' + ", login='"
                 + login + '\'' + ", roles=" + roles + ", password='" + password + '\'' + '}';
     }
 }
