@@ -33,9 +33,9 @@ public class UserRepositoryTest {
         LOGGER.info("пароль = " + this.user.getPassword());
         this.testAll((db, user) -> {
             LOGGER.info("user пришёл в метод = " + user);
-            User User = UserRepository.getInstance().findByLogin(user);
-            LOGGER.info("User = " + User);
-            assertThat(User.getLogin(), Is.is("login2"));
+            User user1 = UserRepository.getInstance().findByLogin(user);
+            LOGGER.info("User = " + user1);
+            assertThat(user1.getLogin(), Is.is("login2"));
         });
     }
 
