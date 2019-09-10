@@ -1,8 +1,7 @@
 package ru.callinsicght.countwords.reposiroty;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import ru.callinsicght.countwords.model.User;
-import ru.callinsicght.countwords.service.UserService;
 
 import java.util.List;
 
@@ -11,19 +10,16 @@ import java.util.List;
  * @version 1
  * @since 19/05/19
  */
-public class UserReposirory implements Store<User> {
-    private static final UserReposirory INSTANCE = new UserReposirory();
+@Component
+public class UserRepository implements Store<User> {
+    private static final UserRepository INSTANCE = new UserRepository();
 
-    @Autowired
-    private UserService userService;
-
-    public static UserReposirory getInstance() {
+    public static UserRepository getInstance() {
         return INSTANCE;
     }
 
     @Override
     public User add(User user) {
-        userService.userEncodePassword(user);
         User test = this.findByLogin(user);
         if (test.getId() != 0) {
             return user;
@@ -46,7 +42,6 @@ public class UserReposirory implements Store<User> {
 
     @Override
     public User edit(User user) {
-        userService.userEncodePassword(user);
         return openSession(session -> {
             session.saveOrUpdate(user);
             return session.get(User.class, user.getId());
@@ -76,7 +71,6 @@ public class UserReposirory implements Store<User> {
 
     @Override
     public User findByLoginPass(User user) {
-        userService.userEncodePassword(user);
         String sql = "from User where login = '" + user.getLogin() + "' and password = '" + user.getPassword() + "'";
         return refactList(sql).get(0);
     }

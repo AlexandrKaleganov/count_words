@@ -9,7 +9,8 @@
         <property name="dialect">org.hibernate.dialect.HSQLDialect</property>
         <property name="hibernate.hbm2ddl.auto">create</property>
 
-        <!--<mapping resource="ru/akaleganov/models/User.hbm.xml"/>-->
-<!--        <mapping class="ru.akaleganov.model.Users"/>-->
+        <mapping class="ru.callinsicght.countwords.model.AllModels"/>
+        <mapping class="ru.callinsicght.countwords.model.Roles"/>
+        <mapping class="ru.callinsicght.countwords.model.User"/>
     </session-factory>
 </hibernate-configuration>
