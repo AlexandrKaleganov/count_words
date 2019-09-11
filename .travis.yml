@@ -11,12 +11,14 @@ services:
 before_install:
   #- psql -c 'create database count_words;' -U postgres
   - mysql -e 'CREATE DATABASE count_words;'
+env:
+  global:
+  CODECOV_TOKEN="73dbc9de-fef5-4293-8314-f6a6ea6afaed"
 
 # после выполнения сборки запустить скрипт, который будет собирать статистику по JaCoCo
 # Здесь используется сторонни сервис https://codecov.io/
 after_success:
   - bash <(curl -s https://codecov.io/bash)
-
 # Отправлять уведомление на почту youremail@smtp.ru (Изменить на свою) если сборка упала
 notifications:
   email:

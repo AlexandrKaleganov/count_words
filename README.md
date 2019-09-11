@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/AlexandrKaleganov/count_words.svg?branch=master)](https://travis-ci.org/AlexandrKaleganov/count_words)
+[![codecov](https://codecov.io/gh/AlexandrKaleganov/count_words/branch/master/graph/badge.svg)](https://codecov.io/gh/AlexandrKaleganov/count_words)
+
 # count_words
 Приложение будет собирать статистику по количеству слов в бд
 1. авторизуемся в приложении
