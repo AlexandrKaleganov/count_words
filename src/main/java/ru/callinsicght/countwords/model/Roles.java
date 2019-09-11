@@ -1,6 +1,9 @@
 package ru.callinsicght.countwords.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -15,8 +18,10 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "roles")
 public class Roles extends AllModels {
-    @Column(name = "role")
-    private String role;
+    @Getter
+    @Setter
+    @Column(name = "name")
+    private String name;
 
     public Roles(int id) {
         super(id);
@@ -27,16 +32,8 @@ public class Roles extends AllModels {
     }
 
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
     @Override
     public String toString() {
-        return "Roles{" + "id=" + super.getId() + ", role='" + role + '\'' + '}';
+        return "Roles{" + "id=" + super.getId() + ", name='" + name + '\'' + '}';
     }
 }

@@ -1,6 +1,8 @@
 package ru.callinsicght.countwords.model;
 
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -24,21 +26,29 @@ public class DataBase extends AllModels {
     /**
      * имя бд
      */
+    @Getter
+    @Setter
     @Column(name = "name")
     private String name;
     /**
      * ip бд
      */
+    @Getter
+    @Setter
     @Column(name = "ip_bd")
     private String ipBd;
     /**
      * пароль от бд
      */
+    @Getter
+    @Setter
     @Column(name = "password")
     private String password;
     /**
      * пользоаватель, который добавил бд в приложение
      */
+    @Getter
+    @Setter
     @Column(name = "user_id")
     private User user;
     /**

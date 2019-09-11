@@ -16,10 +16,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserRepositoryTest {
     private final static Logger LOGGER = getLogger(UserRepositoryTest.class);
 
-    private String jsonUser = "{\"name\":\"name\", \"login\":\"login2\", \"roles\":{\"id\":\"1\",\"role\":\"ADMIN\"}, \"password\":\"pass\"}";
-    String jsonRole = "{\"id\":\"1\", \"role\":\"ADMIN\"}";
-    Roles role = RolesRepository.getInstance().add(new ObjectMapper().readValue(jsonRole, Roles.class));
-    User user = UserRepository.getInstance().add(new ObjectMapper().readValue(jsonUser, User.class));
+    private String jsonUser = "{\"name\":\"name\", \"login\":\"login2\", \"roles\":{\"id\":\"1\",\"name\":\"ADMIN\"}, \"password\":\"pass\"}";
+    private String jsonRole = "{\"id\":\"1\", \"name\":\"ADMIN\"}";
+    private Roles role = RolesRepository.getInstance().add(new ObjectMapper().readValue(jsonRole, Roles.class));
+    private User user = UserRepository.getInstance().add(new ObjectMapper().readValue(jsonUser, User.class));
 
     public UserRepositoryTest() throws IOException {
     }

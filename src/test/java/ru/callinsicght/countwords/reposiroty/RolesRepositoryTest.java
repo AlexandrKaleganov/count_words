@@ -16,8 +16,8 @@ public class RolesRepositoryTest {
 
     @Test
     public void findAll() throws IOException {
-        String jsonRole = "{\"id\":\"1\", \"role\":\"ADMIN\"}";
+        String jsonRole = "{\"id\":\"1\", \"name\":\"ADMIN\"}";
         Roles role = RolesRepository.getInstance().add(new ObjectMapper().readValue(jsonRole, Roles.class));
-        assertThat(RolesRepository.getInstance().findByID(role).getRole(), Is.is("ADMIN"));
+        assertThat(RolesRepository.getInstance().findByID(role).getName(), Is.is("ADMIN"));
     }
 }

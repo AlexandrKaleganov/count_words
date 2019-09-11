@@ -1,8 +1,8 @@
 create table if not exists user
 (
     id bigint auto_increment primary key,
-    name     varchar(200),
-    login    varchar(200),
+    name     varchar(255),
+    login    varchar(255),
     role_id  bigint references roles (id),
-    password varchar(200)
+    password varchar(255)
 );

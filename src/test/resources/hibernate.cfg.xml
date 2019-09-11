@@ -12,5 +12,9 @@
         <mapping class="ru.callinsicght.countwords.model.AllModels"/>
         <mapping class="ru.callinsicght.countwords.model.Roles"/>
         <mapping class="ru.callinsicght.countwords.model.User"/>
+        <mapping class="ru.callinsicght.countwords.model.DataBase"/>
+        <mapping class="ru.callinsicght.countwords.model.App"/>
+        <mapping class="ru.callinsicght.countwords.model.TableList"/>
+
     </session-factory>
 </hibernate-configuration>
