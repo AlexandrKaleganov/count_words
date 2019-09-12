@@ -49,12 +49,16 @@ public class DataBase extends AllModels {
      */
     @Getter
     @Setter
-    @Column(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    @Fetch(FetchMode.JOIN)
     private User user;
     /**
      * список приложени, которые есть в бд
      */
-    @OneToMany(mappedBy = "app", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Setter
+    @Getter
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "dataBase")
     @Fetch(FetchMode.JOIN)
     private List<App> appList;
 

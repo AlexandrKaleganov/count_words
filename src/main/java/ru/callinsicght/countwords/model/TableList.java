@@ -1,6 +1,10 @@
 package ru.callinsicght.countwords.model;
 
 
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -14,7 +18,7 @@ import java.util.Set;
  **/
 
 @Entity
-@Table(name = "roles")
+@Table(name = "tableList")
 public class TableList extends AllModels {
     /**
      * наименование приложения
@@ -24,18 +28,26 @@ public class TableList extends AllModels {
     /**
      * база данных к которой относится таблица
      */
+    @Getter
+    @Setter
+    @NonNull
     @ManyToOne
-    @JoinColumn(name = "data_base_id", nullable = false)
+    @JoinColumn(name = "data_base_id")
     private DataBase dataBase;
     /**
      * пользователь, который собрал статистику
      */
+    @Getter
+    @Setter
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
     /**
      * список приложений к которым относится данныя таблица
      */
+    @Getter
+    @Setter
     @ManyToMany
     @JoinTable(name = "app_table_list",
             joinColumns = @JoinColumn(name = "tableList_id", referencedColumnName = "id"),

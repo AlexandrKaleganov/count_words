@@ -1,4 +1,4 @@
-create table if not exists app
+create table if not exists apps
 (
     id bigint auto_increment primary key,
     id_app      bigint,
@@ -6,5 +6,5 @@ create table if not exists app
     exten       varchar(255),
     port        varchar(255),
     project_name varchar(255),
-    dataBase_id bigint references data_base (id)
+    data_base_id bigint not null references data_base (id)
 );

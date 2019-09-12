@@ -1,7 +1,9 @@
 package ru.callinsicght.countwords.reposiroty;
 
 import ru.callinsicght.countwords.model.Roles;
+import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,6 +21,9 @@ public class RolesRepository implements Store<Roles> {
     //мтод не раелизован
     @Override
     public Roles add(Roles roles) {
+        if (this.findByName(roles).get(0).getId() > 0) {
+            return roles;
+        }
         return openSession(session -> {
             session.save(roles);
             return session.load(Roles.class, roles.getId());
@@ -46,7 +51,7 @@ public class RolesRepository implements Store<Roles> {
 
     //мтод не раелизован
     @Override
-    public Roles findByID(Roles roles) {
+    public Roles findById(Roles roles) {
         Roles rsl = openSession(session -> session.get(Roles.class, roles.getId()));
         if (rsl == null) {
             rsl = new Roles(0);
@@ -57,8 +62,9 @@ public class RolesRepository implements Store<Roles> {
     //мтод не раелизован
     @Override
     public List<Roles> findByName(Roles roles) {
-        error();
-        return null;
+        String sql = "from Roles where name = '" + roles.getName() + "'";
+        LOGGER.info(" roles.getName() = " + roles.getName());
+        return refactList(sql);
     }
 
     @Override
@@ -73,4 +79,15 @@ public class RolesRepository implements Store<Roles> {
         return null;
     }
 
+    private List<Roles> refactList(String sql) {
+        return openSession(session -> {
+            List<Roles> rsl = session.createQuery(sql).list();
+            if (rsl.size() > 0) {
+                return rsl;
+            } else {
+                rsl.add(new Roles(0));
+                return rsl;
+            }
+        });
+    }
 }

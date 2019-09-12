@@ -2,6 +2,7 @@ package ru.callinsicght.countwords.reposiroty;
 
 import org.springframework.stereotype.Component;
 import ru.callinsicght.countwords.model.User;
+import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
 import java.util.List;
 
@@ -54,7 +55,7 @@ public class UserRepository implements Store<User> {
     }
 
     @Override
-    public User findByID(User user) {
+    public User findById(User user) {
         User rsl = null;
         rsl = openSession(session -> session.get(User.class, user.getId()));
         if (rsl == null) {

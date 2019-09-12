@@ -1,8 +1,11 @@
 package ru.callinsicght.countwords.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,7 +24,7 @@ import java.util.Set;
  **/
 
 @Entity
-@Table(name = "app")
+@Table(name = "apps")
 public class App extends AllModels {
     /**
      * id приложения в бд app_statistic на сервере из таблицы app
@@ -58,9 +61,12 @@ public class App extends AllModels {
     @Setter
     @Column(name = "project_name")
     private String projectName;
+
     @Getter
     @Setter
-    @Column(name = "dataBase_id")
+    @ManyToOne
+    @JoinColumn(name = "data_base_id", nullable = false)
+    @Fetch(FetchMode.JOIN)
     private DataBase dataBase;
 
     public App(int id) {
@@ -74,15 +80,12 @@ public class App extends AllModels {
     /**
      * список таблиц к в которых упоминается данное приложение
      */
+    @Getter
+    @Setter
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "app_table_list",
             joinColumns = @JoinColumn(name = "app_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "tableList_id", referencedColumnName = "id"))
     private Set<TableList> tableList;
-    @Override
-    public String toString() {
-        return "App{" + "idApp=" + idApp + ", name='" + name + '\'' + ", exten=" + exten
-                + ", port=" + port + ", projectName='" + projectName + '\''
-                + ", dataBase=" + dataBase + '}';
-    }
+
 }

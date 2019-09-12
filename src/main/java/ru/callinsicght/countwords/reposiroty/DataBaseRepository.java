@@ -2,6 +2,7 @@ package ru.callinsicght.countwords.reposiroty;
 
 import ru.callinsicght.countwords.model.DataBase;
 import ru.callinsicght.countwords.model.User;
+import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
 import java.util.List;
 
@@ -19,11 +20,15 @@ public class DataBaseRepository implements Store<DataBase> {
 
     //мтод не раелизован
     @Override
-    public DataBase add(DataBase dataBase) {
-        return openSession(session -> {
-            session.save(dataBase);
-            return session.load(DataBase.class, dataBase.getId());
-        });
+    public DataBase add(DataBase dataBase) throws ExceptionSuchObjectAlreadyIs {
+        if (this.findByIp(dataBase).getId() > 0) {
+            throw new ExceptionSuchObjectAlreadyIs("объект с таким IP адресом уже есть в бд");
+        } else {
+            return openSession(session -> {
+                session.save(dataBase);
+                return session.load(DataBase.class, dataBase.getId());
+            });
+        }
     }
 
     //мтод не раелизован
@@ -47,7 +52,7 @@ public class DataBaseRepository implements Store<DataBase> {
 
     //поиск по id
     @Override
-    public DataBase findByID(DataBase dataBase) {
+    public DataBase findById(DataBase dataBase) {
         DataBase rsl = openSession(session -> session.get(DataBase.class, dataBase.getId()));
         if (rsl == null) {
             rsl = new DataBase(0);
@@ -56,8 +61,8 @@ public class DataBaseRepository implements Store<DataBase> {
     }
 
     //поиск по ip
-    public DataBase findByIP(DataBase dataBase) {
-        String sql = "from DataBase where ipBd = '" + dataBase.getIpBd() + "'";
+    public DataBase findByIp(DataBase dataBase) {
+        String sql = "from DataBase where ip_bd = '" + dataBase.getIpBd() + "'";
         return refactList(sql).get(0);
     }
 

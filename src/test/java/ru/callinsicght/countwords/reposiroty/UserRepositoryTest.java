@@ -6,9 +6,10 @@ import org.hamcrest.core.Is;
 import org.junit.Test;
 import ru.callinsicght.countwords.model.Roles;
 import ru.callinsicght.countwords.model.User;
+import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
 import java.io.IOException;
-import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import static org.apache.log4j.Logger.getLogger;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -16,27 +17,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class UserRepositoryTest {
     private final static Logger LOGGER = getLogger(UserRepositoryTest.class);
 
-    private String jsonUser = "{\"name\":\"name\", \"login\":\"login2\", \"roles\":{\"id\":\"1\",\"name\":\"ADMIN\"}, \"password\":\"pass\"}";
-    private String jsonRole = "{\"id\":\"1\", \"name\":\"ADMIN\"}";
-    private Roles role = RolesRepository.getInstance().add(new ObjectMapper().readValue(jsonRole, Roles.class));
-    private User user = UserRepository.getInstance().add(new ObjectMapper().readValue(jsonUser, User.class));
+    private String jsonRole = "{ \"name\":\"%s\"}";
+    private String jsonUser = "{\"name\":\"name\", \"login\":\"%s\", \"roles\":{\"id\":\"%s\"}, \"password\":\"pass\"}";
 
-    public UserRepositoryTest() throws IOException {
-    }
-
-    private void testAll(BiConsumer<UserRepository, User> fank) {
-        fank.accept(UserRepository.getInstance(), this.user);
-    }
 
     @Test
-    public void add() {
-        LOGGER.info("пароль = " + this.user.getPassword());
-        this.testAll((db, user) -> {
-            LOGGER.info("user пришёл в метод = " + user);
-            User user1 = UserRepository.getInstance().findByLogin(user);
-            LOGGER.info("User = " + user1);
-            assertThat(user1.getLogin(), Is.is("login2"));
-        });
+    public void add() throws IOException, ExceptionSuchObjectAlreadyIs {
+        Roles role =
+                RolesRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonRole, "odmin9"), Roles.class));
+        User user = UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login10", role.getId()), User.class));
+        User user2 = UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login12", role.getId()), User.class));
+        LOGGER.info("пароль = " + user.getPassword());
+        assertThat(UserRepository.getInstance().findById(user).getLogin(), Is.is("login10"));
     }
 
 //    @Test
@@ -48,48 +42,53 @@ public class UserRepositoryTest {
 //    }
 
     @Test
-    public void edit() {
-        LOGGER.info("пароль = " + this.user.getPassword());
-        this.testAll((db, u) -> {
-            u.setName("вася");
-            db.edit(u);
-            assertThat(db.findByID(u).getName(), Is.is("вася"));
-        });
+    public void edit() throws IOException {
+        Roles role =
+                RolesRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonRole, "odmin10"), Roles.class));
+        User user = UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login11", role.getId()), User.class));
+        LOGGER.info("пароль = " + user.getPassword());
+        user.setName("вася");
+        UserRepository.getInstance().edit(user);
+        assertThat(UserRepository.getInstance().findById(user).getName(), Is.is("вася"));
     }
 
     @Test
-    public void findAll() {
-        LOGGER.info("пароль = " + this.user.getPassword());
-        this.testAll((db, u) -> {
-            assertThat(db.findAll().size() > 0, Is.is(true));
-        });
+    public void findAll() throws IOException, ExceptionSuchObjectAlreadyIs {
+        Roles role =
+                RolesRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonRole, "odmin11"), Roles.class));
+       UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login12", role.getId()), User.class));
+            assertThat(UserRepository.getInstance().findAll().size() > 0, Is.is(true));
     }
 
     @Test
-    public void findByID() {
-        LOGGER.info("пароль = " + this.user.getPassword());
-        this.testAll((db, u) -> {
-            LOGGER.error(u.getId() + " id =");
-            User user = UserRepository.getInstance().findByLogin(u);
-            assertThat(db.findByID(user).getLogin(), Is.is("login2"));
-        });
+    public void findByID() throws IOException {
+        Roles role =
+                RolesRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonRole, "odmin12"), Roles.class));
+        User user = UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login13", role.getId()), User.class));
+            LOGGER.error(user.getId() + " id =");
+            assertThat(UserRepository.getInstance().findById(user).getLogin(), Is.is("login13"));
     }
 
 
     @Test
-    public void findByLoginPass() {
-        LOGGER.info("c " + this.user.getPassword());
-        this.testAll((db, u) -> {
-            u.setPassword("pass");
-            assertThat(db.findByLoginPass(u).getLogin(), Is.is("login2"));
-        });
+    public void findByLoginPass() throws IOException {
+        Roles role =
+                RolesRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonRole, "odmin13"), Roles.class));
+        User user = UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login14", role.getId()), User.class));
+            user.setPassword("pass");
+            assertThat(UserRepository.getInstance().findByLoginPass(user).getLogin(), Is.is("login14"));
     }
 
     @Test
-    public void findByLogin() {
-        LOGGER.info("пароль = " + this.user.getPassword());
-        this.testAll((db, u) -> {
-            assertThat(db.findByLogin(u).getLogin(), Is.is("login2"));
-        });
+    public void findByLogin() throws IOException {
+        Roles role =
+                RolesRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonRole, "odmin14"), Roles.class));
+        User user = UserRepository.getInstance().add(new ObjectMapper().readValue(String.format(jsonUser,
+                "login15", role.getId()), User.class));
+            assertThat(UserRepository.getInstance().findByLogin(user).getLogin(), Is.is("login15"));
     }
 }

@@ -2,6 +2,7 @@ package ru.callinsicght.countwords.reposiroty;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 import ru.callinsicght.countwords.service.Sfactory;
 
 import java.util.List;
@@ -44,13 +45,13 @@ public interface Store<E> {
 
     default void error() {
         try {
-            throw new ExceptonnullMethod();
-        } catch (ExceptonnullMethod e) {
+            throw new ExceptionNullMethod();
+        } catch (ExceptionNullMethod e) {
             LOGGER.info(e.getMessage(), e);
         }
     }
 
-    E add(E e);
+    E add(E e) throws ExceptionSuchObjectAlreadyIs;
 
     E delete(E e);
 
@@ -58,7 +59,7 @@ public interface Store<E> {
 
     List<E> findAll();
 
-    E findByID(E e);
+    E findById(E e);
 
     List<E> findByName(E e);
 
