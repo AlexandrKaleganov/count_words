@@ -1,7 +1,6 @@
 package ru.callinsicght.countwords.reposiroty;
 
 import ru.callinsicght.countwords.model.DataBase;
-import ru.callinsicght.countwords.model.User;
 import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
 import java.util.List;
@@ -22,6 +21,7 @@ public class DataBaseRepository implements Store<DataBase> {
     @Override
     public DataBase add(DataBase dataBase) throws ExceptionSuchObjectAlreadyIs {
         if (this.findByIp(dataBase).getId() > 0) {
+            LOGGER.info("объект с таким IP = " + this.findByIp(dataBase).getId());
             throw new ExceptionSuchObjectAlreadyIs("объект с таким IP адресом уже есть в бд");
         } else {
             return openSession(session -> {
@@ -34,15 +34,25 @@ public class DataBaseRepository implements Store<DataBase> {
     //мтод не раелизован
     @Override
     public DataBase delete(DataBase dataBase) {
-        error();
-        return null;
+        openSession(session -> {
+                    session.delete(session.get(DataBase.class, dataBase.getId()));
+                    return dataBase;
+                }
+        );
+        return dataBase;
     }
 
-    //мтод не раелизован
     @Override
-    public DataBase edit(DataBase dataBase) {
-        error();
-        return null;
+    public DataBase edit(DataBase dataBase) throws ExceptionSuchObjectAlreadyIs {
+        DataBase test = this.findByIp(dataBase);
+        if (test.getId() != dataBase.getId() && test.getId() > 0) {
+            throw new ExceptionSuchObjectAlreadyIs("объект с таким IP адресом уже есть в бд");
+        } else {
+            return openSession(session -> {
+                session.saveOrUpdate(dataBase);
+                return session.get(DataBase.class, dataBase.getId());
+            });
+        }
     }
 
     @Override
@@ -70,19 +80,20 @@ public class DataBaseRepository implements Store<DataBase> {
     @Override
     public List<DataBase> findByName(DataBase dataBase) {
         String sql = "from DataBase where name = '" + dataBase.getName() + "'";
+        LOGGER.info("sql = " + sql);
         return refactList(sql);
     }
 
     //не реализован
     @Override
-    public DataBase findByLoginPass(DataBase dataBase) {
+    public DataBase findByLoginPass(DataBase dataBase) throws ExceptionNullMethod {
         error();
         return null;
     }
 
     //не реализован
     @Override
-    public DataBase findByLogin(DataBase dataBase) {
+    public DataBase findByLogin(DataBase dataBase) throws ExceptionNullMethod {
         error();
         return null;
     }

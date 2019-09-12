@@ -1,9 +1,7 @@
 package ru.callinsicght.countwords.reposiroty;
 
 import ru.callinsicght.countwords.model.Roles;
-import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -32,14 +30,14 @@ public class RolesRepository implements Store<Roles> {
 
     //мтод не раелизован
     @Override
-    public Roles delete(Roles roles) {
+    public Roles delete(Roles roles) throws ExceptionNullMethod {
         error();
         return null;
     }
 
     //мтод не раелизован
     @Override
-    public Roles edit(Roles roles) {
+    public Roles edit(Roles roles) throws ExceptionNullMethod {
         error();
         return null;
     }
@@ -68,13 +66,13 @@ public class RolesRepository implements Store<Roles> {
     }
 
     @Override
-    public Roles findByLoginPass(Roles roles) {
+    public Roles findByLoginPass(Roles roles) throws ExceptionNullMethod {
         error();
         return null;
     }
 
     @Override
-    public Roles findByLogin(Roles roles) {
+    public Roles findByLogin(Roles roles) throws ExceptionNullMethod {
         error();
         return null;
     }

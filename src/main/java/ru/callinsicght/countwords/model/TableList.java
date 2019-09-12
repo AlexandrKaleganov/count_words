@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -52,5 +53,5 @@ public class TableList extends AllModels {
     @JoinTable(name = "app_table_list",
             joinColumns = @JoinColumn(name = "tableList_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "app_id", referencedColumnName = "id"))
-    private Set<App> appList;
+    private Set<App> appList = new HashSet<>();
 }

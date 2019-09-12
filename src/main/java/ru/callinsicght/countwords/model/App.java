@@ -8,6 +8,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -76,16 +77,16 @@ public class App extends AllModels {
     public App() {
         super();
     }
-
-    /**
-     * список таблиц к в которых упоминается данное приложение
-     */
-    @Getter
-    @Setter
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "app_table_list",
-            joinColumns = @JoinColumn(name = "app_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "tableList_id", referencedColumnName = "id"))
-    private Set<TableList> tableList;
+//
+//    /**
+//     * список таблиц к в которых упоминается данное приложение
+//     */
+//    @Getter
+//    @Setter
+//    @ManyToMany
+//    @JoinTable(name = "app_table_list",
+//            joinColumns = @JoinColumn(name = "app_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "tableList_id", referencedColumnName = "id"))
+//    private Set<TableList> tableList = new HashSet<>();
 
 }

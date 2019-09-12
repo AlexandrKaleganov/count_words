@@ -20,10 +20,11 @@ public class UserRepository implements Store<User> {
     }
 
     @Override
-    public User add(User user) {
+    public User add(User user) throws ExceptionSuchObjectAlreadyIs {
         User test = this.findByLogin(user);
         if (test.getId() != 0) {
-            return user;
+            LOGGER.info("объект с таким IP = " + this.findByLogin(user).getId());
+            throw new ExceptionSuchObjectAlreadyIs("объект с таким IP адресом уже есть в бд");
         } else {
             return openSession(session -> {
                 session.save(user);
@@ -43,10 +44,15 @@ public class UserRepository implements Store<User> {
 
     @Override
     public User edit(User user) {
-        return openSession(session -> {
-            session.saveOrUpdate(user);
-            return session.get(User.class, user.getId());
-        });
+        User test = this.findByLogin(user);
+        if (test.getId() != user.getId() && test.getId() != 0) {
+            return user;
+        } else {
+            return openSession(session -> {
+                session.saveOrUpdate(user);
+                return session.get(User.class, user.getId());
+            });
+        }
     }
 
     @Override

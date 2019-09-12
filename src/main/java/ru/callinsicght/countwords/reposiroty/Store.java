@@ -43,19 +43,15 @@ public interface Store<E> {
         return rsl;
     }
 
-    default void error() {
-        try {
+    default void error() throws ExceptionNullMethod {
             throw new ExceptionNullMethod();
-        } catch (ExceptionNullMethod e) {
-            LOGGER.info(e.getMessage(), e);
-        }
     }
 
     E add(E e) throws ExceptionSuchObjectAlreadyIs;
 
-    E delete(E e);
+    E delete(E e) throws ExceptionNullMethod;
 
-    E edit(E e);
+    E edit(E e) throws ExceptionSuchObjectAlreadyIs, ExceptionNullMethod;
 
     List<E> findAll();
 
@@ -63,8 +59,8 @@ public interface Store<E> {
 
     List<E> findByName(E e);
 
-    E findByLoginPass(E e);
+    E findByLoginPass(E e) throws ExceptionNullMethod;
 
-    E findByLogin(E e);
+    E findByLogin(E e) throws ExceptionNullMethod;
 
 }
