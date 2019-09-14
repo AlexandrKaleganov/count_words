@@ -47,7 +47,7 @@ public interface Store<E> {
             throw new ExceptionNullMethod();
     }
 
-    E add(E e) throws ExceptionSuchObjectAlreadyIs;
+    E add(E e) throws ExceptionSuchObjectAlreadyIs, ExceptionNullMethod;
 
     E delete(E e) throws ExceptionNullMethod;
 
