@@ -6,6 +6,7 @@
 
     <groupId>count_words</groupId>
     <artifactId>count_words</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -15,18 +16,30 @@
     </properties>
     <profiles>
         <profile>
-            <id>count_words</id>
+            <id>count_words_local</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-
+                <db.url>jdbc:mysql://localhost:3306/count_words?serverTimezone=Europe/Moscow</db.url>
+                <db.username>root</db.username>
+                <db.password>mysql</db.password>
+                <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
+            </properties>
+        </profile>
+        <profile>
+            <id>count_words</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
                 <db.url>jdbc:mysql://10.201.2.2:3306/count_words?serverTimezone=Europe/Moscow</db.url>
                 <db.username>nesh</db.username>
                 <db.password>12345</db.password>
                 <db.driver>com.mysql.cj.jdbc.Driver</db.driver>
             </properties>
         </profile>
+
     </profiles>
     <build>
         <resources>
@@ -169,28 +182,30 @@
             <version>4.0.1</version>
         </dependency>
         <!--Hibernate START-->
+        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.2.Final</version>
+            <version>5.4.1.Final</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
-            <version>5.4.2.Final</version>
+            <version>5.4.4.Final</version>
         </dependency>
-        <!--Hibernate END-->
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.4.0</version>
+            <scope>test</scope>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
+            <version>8.0.15</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-            <version>2.6.0</version>
-        </dependency>
+        <!--Hibernate END-->
         <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-maven-plugin -->
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -219,30 +234,9 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.1.8.RELEASE</version>
+            <version>5.1.9.RELEASE</version>
         </dependency>
-        <!--Spring End-->
         <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
-
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>4.2.12.RELEASE</version>
-        </dependency>
-        <!--Hibernate END-->
-        <!-- https://mvnrepository.com/artifact/org.hsqldb/hsqldb -->
-        <dependency>
-            <groupId>org.hsqldb</groupId>
-            <artifactId>hsqldb</artifactId>
-            <version>2.4.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>5.1.5.RELEASE</version>
-        </dependency>
-        <!--Hibernate END-->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

@@ -47,8 +47,8 @@ public class AppRepository implements Store<App> {
 
     //поиск по id
     @Override
-    public App findById(App App) {
-        App rsl = openSession(session -> session.get(App.class, App.getId()));
+    public App findById(App app) {
+        App rsl = openSession(session -> session.get(App.class, app.getId()));
         if (rsl == null) {
             rsl = new App(0);
         }
@@ -65,7 +65,7 @@ public class AppRepository implements Store<App> {
 
     //не реализован
     @Override
-    public App findByLoginPass(App App) throws ExceptionNullMethod {
+    public App findByLoginPass(App app) throws ExceptionNullMethod {
         error();
         return null;
     }

@@ -1,5 +1,6 @@
 package ru.callinsicght.countwords.service;
 
+import ru.callinsicght.countwords.reposiroty.ExceptionNullMethod;
 import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
 import java.io.IOException;
@@ -14,5 +15,5 @@ import java.io.IOException;
  * @param <R> то что должен вернуть метод
  */
 public interface FankEx<E, R> {
-    R submit(E e) throws IOException, ExceptionSuchObjectAlreadyIs;
+    R submit(E e) throws IOException, ExceptionSuchObjectAlreadyIs, ExceptionNullMethod;
 }

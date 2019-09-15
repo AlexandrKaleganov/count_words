@@ -11,7 +11,6 @@ import java.util.List;
  * @version 1
  * @since 19/05/19
  */
-@Component
 public class UserRepository implements Store<User> {
     private static final UserRepository INSTANCE = new UserRepository();
 
@@ -78,6 +77,7 @@ public class UserRepository implements Store<User> {
 
     @Override
     public User findByLoginPass(User user) {
+        LOGGER.info("пользователь которого ищем = " + user);
         String sql = "from User where login = '" + user.getLogin() + "' and password = '" + user.getPassword() + "'";
         return refactList(sql).get(0);
     }
