@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import ru.callinsicght.countwords.model.User;
 import ru.callinsicght.countwords.reposiroty.ExceptionNullMethod;
 import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
+import ru.callinsicght.countwords.service.Sfactory;
 import ru.callinsicght.countwords.service.UserDispatcher;
 
 import javax.servlet.ServletException;
