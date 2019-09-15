@@ -77,6 +77,12 @@ public class RolesRepository implements Store<Roles> {
         return null;
     }
 
+    @Override
+    public Roles findByIp(Roles roles) throws ExceptionNullMethod {
+        error();
+        return null;
+    }
+
     private List<Roles> refactList(String sql) {
         return openSession(session -> {
             List<Roles> rsl = session.createQuery(sql).list();

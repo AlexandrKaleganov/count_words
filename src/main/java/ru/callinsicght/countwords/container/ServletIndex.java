@@ -1,6 +1,7 @@
 package ru.callinsicght.countwords.container;
 
 import org.apache.log4j.Logger;
+import ru.callinsicght.countwords.reposiroty.UserRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

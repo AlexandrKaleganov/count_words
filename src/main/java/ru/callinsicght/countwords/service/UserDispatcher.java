@@ -1,8 +1,6 @@
 package ru.callinsicght.countwords.service;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.callinsicght.countwords.model.Mod;
 import ru.callinsicght.countwords.model.User;
 import ru.callinsicght.countwords.model.Roles;
@@ -22,7 +20,6 @@ import static org.apache.log4j.Logger.getLogger;
  * @author Alexander Kaleganov
  * @version 0.0.1
  */
-@Component
 public class UserDispatcher {
     private final static Logger LOGGER = getLogger(UserDispatcher.class);
 
@@ -33,12 +30,6 @@ public class UserDispatcher {
     public static UserDispatcher getInstance() {
         return INSTANCE;
     }
-
-    @Autowired
-    UserDispatcher() {
-        this.init();
-    }
-
     /**
      * Load initial hashmap functional.
      */

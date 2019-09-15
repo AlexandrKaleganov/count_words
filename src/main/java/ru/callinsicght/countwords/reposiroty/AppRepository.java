@@ -77,6 +77,12 @@ public class AppRepository implements Store<App> {
         return null;
     }
 
+    @Override
+    public App findByIp(App app) throws ExceptionNullMethod {
+        error();
+        return null;
+    }
+
     private List<App> refactList(String sql) {
         return openSession(session -> {
             List<App> rsl = session.createQuery(sql).list();

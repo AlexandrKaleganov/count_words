@@ -44,7 +44,7 @@ public interface Store<E> {
     }
 
     default void error() throws ExceptionNullMethod {
-            throw new ExceptionNullMethod();
+        throw new ExceptionNullMethod();
     }
 
     E add(E e) throws ExceptionSuchObjectAlreadyIs, ExceptionNullMethod;
@@ -63,4 +63,5 @@ public interface Store<E> {
 
     E findByLogin(E e) throws ExceptionNullMethod;
 
+    E findByIp(E e) throws ExceptionNullMethod;
 }

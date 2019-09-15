@@ -10,6 +10,4 @@
 <!--    <bean id="storage" class="ru.akaleganov.db.UserStorage">-->
 <!--        <constructor-arg name="store" ref="memory"/>-->
 <!--    </bean>-->
-    <context:component-scan base-package="ru.callinsicght.countwords.service"/>
-        <context:component-scan base-package="ru.callinsicght.countwords.model"/>
 </beans>

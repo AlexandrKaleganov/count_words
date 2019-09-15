@@ -4,6 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import ru.callinsicght.countwords.model.User;
 import ru.callinsicght.countwords.reposiroty.ExceptionNullMethod;
+import ru.callinsicght.countwords.reposiroty.Store;
+import ru.callinsicght.countwords.reposiroty.UserRepository;
 import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 
 import java.io.IOException;
@@ -11,7 +13,7 @@ import java.io.IOException;
 public class UserDispatcherTest {
 
     @Test
-    public void getInstance() throws IOException, ExceptionSuchObjectAlreadyIs {
+    public void getInstance() throws IOException, ExceptionSuchObjectAlreadyIs, ExceptionNullMethod {
         User temp = new ObjectMapper().readValue(String.format("{\"login\":\"%s\", \"password\":\"%s\"}",
                 "root", "root"), User.class);
         System.out.println(temp);
@@ -24,5 +26,8 @@ public class UserDispatcherTest {
         System.out.println(test1);
         String jsonRole = "{ \"name\":\"%s\"}";
         String jsonUser = "{\"name\":\"name\", \"login\":\"%s\", \"roles\":{\"id\":\"%s\"}, \"password\":\"pass\"}";
+        Store<User> store = UserRepository.getInstance();
+        store.findByLoginPass(temp);
+
     }
 }
