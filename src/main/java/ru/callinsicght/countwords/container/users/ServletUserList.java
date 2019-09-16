@@ -27,6 +27,7 @@ public class ServletUserList extends HttpServlet {
         String action = req.getParameter("action");
         if (action.contains("findByIdUser")) {
             try {
+                LOGGER.info("action = "  + action);
                 req.setAttribute("user", UserDispatcher.getInstance().access(action, new User(Integer.valueOf(req.getParameter("us")))));
                 req.getRequestDispatcher("WEB-INF/vievs/users/edit.jsp").forward(req, resp);
             } catch (IOException | ExceptionSuchObjectAlreadyIs | ExceptionNullMethod e) {

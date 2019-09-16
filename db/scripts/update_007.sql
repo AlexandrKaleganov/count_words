@@ -1,4 +1,4 @@
-create table if not exists app__table_list
+create table if not exists app_table_list
 (
     id serial primary key,
     tableList_id bigint references tableList (id),

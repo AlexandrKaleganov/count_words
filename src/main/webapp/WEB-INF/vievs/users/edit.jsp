@@ -45,8 +45,8 @@
             <input type="text" class="form-control" name="name" value="${user.name}" title="Enter name." id="name">
         </div>
         <div class="form-group">
-            <label for="login">Маил:</label>
-            <input type="text" class="form-control" name="mail" value="${user.login}" title="Enter login." id="login">
+            <label for="login">Логин:</label>
+            <input type="text" class="form-control" name="login" value="${user.login}" title="Enter login." id="login">
         </div>
         <div class="form-group">
             <label for="password">Проль:</label>
@@ -56,7 +56,7 @@
         <div class="form-group">
             <label for="roles">Роли:</label>
             <select class="form-control" name="roles" title="Enter the attribute access" id="roles">
-                <option value="${user.roles.id}">${user.roles.role}</option>
+                <option value="${user.roles.id}">${user.roles.name}</option>
             </select>
         </div>
         <button type="button" id="action" name="action" value="addOrupdate" class="btn btn-primary" onclick="return addOrupdate();">Submit

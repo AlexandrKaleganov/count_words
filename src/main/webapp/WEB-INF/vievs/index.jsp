@@ -38,19 +38,6 @@
         <input type="submit" value="Подать объявление">
     </form>
     <br/>
-    <div>
-        <select id="filter" onchange="filterAction()">
-            <option></option>
-            <option value="toShowForTheLastDay">- показать за последний день</option>
-            <option value="toShowWithAPhoto">- показать с фото</option>
-            <option value="toShowACertainBrand">- показать определенной марки</option>
-        </select>
-        <select hidden="true" id="marka" onchange="filterAction()">
-            <option value="0"></option>
-        </select>
-    </div>
-    <br/>
-    <br/>
     <br/>
     <input class="form-control" id="myInput" type="text" placeholder="Search..">
     <table class="table table-striped" id="todolist_table">

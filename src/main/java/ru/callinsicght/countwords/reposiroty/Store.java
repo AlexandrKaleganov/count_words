@@ -6,6 +6,7 @@ import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
 import ru.callinsicght.countwords.service.Sfactory;
 
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 
