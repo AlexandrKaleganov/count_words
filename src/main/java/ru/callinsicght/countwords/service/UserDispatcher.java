@@ -60,7 +60,7 @@ public class UserDispatcher {
      */
     public <E> E access(String key, Mod ticket) throws IOException, ExceptionSuchObjectAlreadyIs, ExceptionNullMethod {
         LOGGER.info("объект который пришёл в диспатчер" + ticket);
-        LOGGER.info("ключ который получил метод");
+        LOGGER.info("ключ который получил метод = " + key);
         //noinspection unchecked,OptionalGetWithoutIsPresent
         return (E) this.userDispatcher.get(key).submit(ticket).get();
     }

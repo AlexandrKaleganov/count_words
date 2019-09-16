@@ -33,7 +33,7 @@ public class SigninServlet extends HttpServlet {
             user = UserDispatcher.getInstance()
                     .access("findByLoginPass", temp
                     );
-            LOGGER.error("user = " + user);
+            LOGGER.info("user = " + user);
             if (user != null && user.getLogin() == null) {
                 req.setAttribute("err", "Пользователь или пароль указан не верно");
                 req.getRequestDispatcher("/WEB-INF/vievs/login.jsp").forward(req, resp);

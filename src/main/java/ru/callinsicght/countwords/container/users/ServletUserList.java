@@ -48,6 +48,7 @@ public class ServletUserList extends HttpServlet {
             try {
                 PrintWriter writer = new PrintWriter(resp.getOutputStream());
                 try {
+                    LOGGER.info("в сервле пришёл пользователь = " + req.getParameter("us"));
 //                    тут приходит пользователь в json
                     writer.append(new ObjectMapper().writeValueAsString(UserDispatcher.getInstance().access(action,
                             new ObjectMapper().readValue(req.getParameter("us"), User.class))));

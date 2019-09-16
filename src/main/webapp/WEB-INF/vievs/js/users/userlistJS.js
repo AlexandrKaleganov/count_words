@@ -21,7 +21,7 @@ function listuser() {
 
 function loadtable(u) {
     var rsl = "";
-    rsl = rsl + "<tr><td>" + u.id + "</td><td>" + u.name + "</td><td>" + u.login + "</td><td>" + u.roles.role + "</td><td>";
+    rsl = rsl + "<tr><td>" + u.id + "</td><td>" + u.name + "</td><td>" + u.login + "</td><td>" + u.roles.name + "</td><td>";
     if ($("#rol").val() === "ADMIN") {
         rsl = rsl + stringButton(u.id);
 

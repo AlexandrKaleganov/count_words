@@ -37,7 +37,6 @@ public class RoleDispatcher {
         //управление ролями
         this.userDispatcher.put("findAllRoles", (ticket) ->
                 Optional.of(RolesRepository.getInstance().findAll()));
-
         return this;
     }
 

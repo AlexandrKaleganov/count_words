@@ -36,18 +36,19 @@ $(document).ready(function rolelist() {
         data: {action: "findAllRoles", ro: "{\"id\":\"0\"" + "}"},
         dataType: "json",
         success: function (data) {
+            console.log(data);
             for (var i = 0; i < data.length; i++) {
                 $("#roles option:last").after(returnrolelist(data[i]));
             }
         }
     });
 
-    function returnrolelist(user) {
+    function returnrolelist(roles) {
         // noinspection JSJQueryEfficiency
         if ($("#rol").val() === "ADMIN") {
-            return "<option value='" + user.id + "'>" + user.role + "</option>"
-        } else if ($("#rol").val() === user.role) {
-            return "<option value='" + user.id + "'>" + user.role + "</option>"
+            return "<option value='" + roles.id + "'>" + roles.name + "</option>"
+        } else if ($("#rol").val() === roles.role) {
+            return "<option value='" + roles.id + "'>" + roles.name + "</option>"
         } else {
             return "";
         }
@@ -64,10 +65,10 @@ function addOrupdate() {
     // noinspection JSJQueryEfficiency
     if ($("#id").val() > 0) {
         rsl = "обновлён";
-        action = "addOrupdate";
+        action = "addOrUpdate";
     } else {
         rsl = "добавлен";
-        action = "addus"
+        action = "addUser"
     }
     if (valId()) {
         $.ajax({
