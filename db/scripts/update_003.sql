@@ -1,8 +1,8 @@
-create table if not exists user
+create table if not exists users
 (
-    id bigint auto_increment primary key,
+    id serial primary key,
     name     varchar(255),
     login    varchar(255),
     role_id  bigint references roles (id),
-    password varchar(255)
+    pass varchar(255)
 );

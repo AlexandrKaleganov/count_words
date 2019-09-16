@@ -1,6 +1,6 @@
 create table if not exists apps
 (
-    id bigint auto_increment primary key,
+    id serial primary key,
     id_app      bigint,
     name        varchar(255),
     exten       varchar(255),

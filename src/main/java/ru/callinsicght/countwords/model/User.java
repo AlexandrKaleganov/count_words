@@ -10,7 +10,7 @@ import javax.persistence.*;
  * <b>содержит поля:<b/>
  */
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User extends AllModels {
     @Column(name = "name")
     private String name;
@@ -19,7 +19,7 @@ public class User extends AllModels {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
     private Roles roles;
-    @Column(name = "password")
+    @Column(name = "pass")
     private String password;
 
     public User(int id) {

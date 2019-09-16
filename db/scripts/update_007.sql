@@ -1,6 +1,6 @@
 create table if not exists app__table_list
 (
-    id bigint auto_increment primary key,
+    id serial primary key,
     tableList_id bigint references tableList (id),
-    app_id       bigint references app (id)
+    app_id       bigint references apps (id)
 );
