@@ -23,7 +23,7 @@
         <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/users/userlistJS.js" %>
+        <%@include file="/WEB-INF/vievs/users/userlistJS.js" %>
     </script>
     <title>userlist</title>
 </head>

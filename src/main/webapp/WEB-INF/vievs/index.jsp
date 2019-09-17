@@ -18,9 +18,6 @@
 
     <script charset="UTF-8" type="text/javascript">
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
-        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
-        <%@include file="/WEB-INF/vievs/js/index.js"%>
-        <%@include file="/WEB-INF/vievs/js/filterTable.js"%>
     </script>
     <title>index</title>
 </head>
@@ -29,33 +26,5 @@
 <div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
-</div>
-<div class="container">
-    <p>Список объявлений: </p>
-    <form action="${pageContext.servletContext.contextPath}/" method="post">
-        <input type="hidden" name="an" value="0">
-        <input type="hidden" name="action" value="findByIdAn">
-        <input type="submit" value="Подать объявление">
-    </form>
-    <br/>
-    <br/>
-    <input class="form-control" id="myInput" type="text" placeholder="Search..">
-    <table class="table table-striped" id="todolist_table">
-        <thead class="thead-dark">
-        <tr>
-            <th onclick="sortTable(0, 'todolist_table')">ID &darr;</th>
-            <th onclick="sortTable(1, 'todolist_table')">Название объявления &darr;<span
-                    class="fi-sort-ascending"></span></th>
-            <th onclick="sortTable(2, 'todolist_table')">Дата создания &darr;</th>
-            <th onclick="sortTable(3, 'todolist_table')">Марка &darr;</th>
-            <th onclick="sortTable(4, 'todolist_table')">Модель &darr;</th>
-            <th onclick="sortTable(5, 'todolist_table')">Год выпуска &darr;</th>
-            <th onclick="sortTable(6, 'todolist_table')">Пользователь &darr;</th>
-            <th onclick="sortTable(7, 'todolist_table')">Продано &darr;</th>
-            <th>Просмотр</th>
-        </tr>
-        </thead>
-        <tbody id="myTable"></tbody>
-    </table>
 </div>
 </html>

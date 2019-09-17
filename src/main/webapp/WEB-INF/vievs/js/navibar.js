@@ -13,7 +13,7 @@ $(document).ready(function () {
         + "</li>\n"
 
         + "<li class=\"nav-item\">\n"
-        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/\" >Список объявлений</a>\n"
+        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/bdList\" >Список баз данных</a>\n"
         + "</li>\n"
 
         + "   </ul>\n"

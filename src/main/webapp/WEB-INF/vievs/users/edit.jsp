@@ -21,7 +21,7 @@
         <%@include file="/WEB-INF/vievs/js/navibar.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/users/editJS.js" %>
+        <%@include file="/WEB-INF/vievs/users/editJS.js" %>
     </script>
 
     <title>Edit User</title>
