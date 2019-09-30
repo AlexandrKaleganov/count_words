@@ -1,19 +1,21 @@
-package ru.callinsicght.countwords.container;
+package ru.callinsicght.countwords.controller;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+@Controller
 public class ServletDbList extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ServletDbList.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/vievs/dbList/dbList.jsp").forward(req, resp);
+        LOGGER.error("ЗАШЛИ В ДБ ЛИСТ");
+        req.getRequestDispatcher("/WEB-INF/views/dbList/dbList.jsp").forward(req, resp);
     }
 
     @Override

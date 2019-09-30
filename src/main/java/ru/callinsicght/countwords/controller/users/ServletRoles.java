@@ -1,4 +1,4 @@
-package ru.callinsicght.countwords.container.users;
+package ru.callinsicght.countwords.controller.users;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;

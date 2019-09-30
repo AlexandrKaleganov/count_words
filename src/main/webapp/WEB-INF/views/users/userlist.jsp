@@ -17,13 +17,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/navibar.js" %>
+        <%@include file="/WEB-INF/views/js/navibar.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/sortedTable.js" %>
+        <%@include file="/WEB-INF/views/js/sortedTable.js" %>
     </script>
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/users/userlistJS.js" %>
+        <%@include file="/WEB-INF/views/users/userlistJS.js" %>
     </script>
     <title>userlist</title>
 </head>
@@ -50,7 +50,7 @@
         <thead class="thead-dark">
         <tr>
             <th onclick="sortTable(0, 'todolist_table')">ID &darr;</th>
-            <th onclick="sortTable(1, 'todolist_table')">Name &darr;<span class="fi-sort-ascending"></span></th>
+            <th onclick="sortTable(1, 'todolist_table')">Name &darr;</th>
             <th onclick="sortTable(2, 'todolist_table')">Login &darr;</th>
             <th onclick="sortTable(3, 'todolist_table')">Role &darr;</th>
             <th>Edit</th>

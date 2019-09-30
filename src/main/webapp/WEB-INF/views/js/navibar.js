@@ -9,11 +9,11 @@ $(document).ready(function () {
         + "<ul class=\"navbar-nav\">\n"
 
         + "<li class=\"nav-item\">\n"
-        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/listUser\">Список пользователей</a>\n"
+        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/user/api/userList\">Список пользователей</a>\n"
         + "</li>\n"
 
         + "<li class=\"nav-item\">\n"
-        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/bdList\" >Список баз данных</a>\n"
+        + "<a class=\"nav-link\" href=\"${pageContext.servletContext.contextPath}/dbList\" >Список баз данных</a>\n"
         + "</li>\n"
 
         + "   </ul>\n"

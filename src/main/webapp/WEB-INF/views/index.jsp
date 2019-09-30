@@ -17,14 +17,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script charset="UTF-8" type="text/javascript">
-        <%@include file="/WEB-INF/vievs/js/navibar.js" %>
+        <%@include file="/WEB-INF/views/js/navibar.js" %>
     </script>
     <title>index</title>
 </head>
 <body id="body">
-</body>
 <div id="navipanel">
 </div>
 <div class="username" id="username" style="float: right;">
 </div>
+</body>
 </html>

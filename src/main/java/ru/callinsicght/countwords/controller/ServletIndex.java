@@ -1,20 +1,20 @@
-package ru.callinsicght.countwords.container;
+package ru.callinsicght.countwords.controller;
 
 import org.apache.log4j.Logger;
-import ru.callinsicght.countwords.reposiroty.UserRepository;
+import org.springframework.stereotype.Controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
+@Controller
 public class ServletIndex extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(ServletIndex.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/vievs/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
     }
 
     @Override

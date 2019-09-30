@@ -1,11 +1,11 @@
-package ru.callinsicght.countwords.container;
+package ru.callinsicght.countwords.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
 import ru.callinsicght.countwords.model.User;
 import ru.callinsicght.countwords.reposiroty.ExceptionNullMethod;
 import ru.callinsicght.countwords.reposiroty.err.ExceptionSuchObjectAlreadyIs;
-import ru.callinsicght.countwords.service.Sfactory;
 import ru.callinsicght.countwords.service.UserDispatcher;
 
 import javax.servlet.ServletException;
@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import static org.apache.log4j.Logger.getLogger;
-
+@Controller
 public class SigninServlet extends HttpServlet {
     private final static Logger LOGGER = getLogger(SigninServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/vievs/login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class SigninServlet extends HttpServlet {
             LOGGER.info("user = " + user);
             if (user != null && user.getLogin() == null) {
                 req.setAttribute("err", "Пользователь или пароль указан не верно");
-                req.getRequestDispatcher("/WEB-INF/vievs/login.jsp").forward(req, resp);
+                req.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
             } else {
                 req.getSession().setAttribute("userID", user.getId());
                 req.getSession().setAttribute("login", user.getLogin());

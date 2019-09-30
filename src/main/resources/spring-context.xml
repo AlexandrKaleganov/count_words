@@ -10,4 +10,9 @@
 <!--    <bean id="storage" class="ru.akaleganov.db.UserStorage">-->
 <!--        <constructor-arg name="store" ref="memory"/>-->
 <!--    </bean>-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+    <context:component-scan base-package="ru.callinsicght"/>
 </beans>

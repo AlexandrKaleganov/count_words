@@ -2,21 +2,35 @@
         listuser();
 });
 
+// /**
+//  * скрипты для отрисовывания таблицы userlist
+//  */
+// function listuser() {
+//     $.ajax({
+//         type: "POST",
+//         url: "./user/api/user",
+//         data: {action: "getListUser", us: "{\"login\":\"login\"" + "}"},
+//         dataType: "json",
+//         success: function (data) {
+//             console.log(data);
+//             for (var i = 0; i < data.length; i++) {
+//                 $("#todolist_table tbody:last").append(loadtable(data[i]));
+//             }
+//         }
+//     });
+// }
+
 /**
  * скрипты для отрисовывания таблицы userlist
  */
 function listuser() {
-    $.ajax({
-        type: "POST",
-        url: "./listUser",
-        data: {action: "getListUser", us: "{\"login\":\"login\"" + "}"},
-        dataType: "json",
-        success: function (data) {
-            for (var i = 0; i < data.length; i++) {
-                $("#todolist_table tbody:last").append(loadtable(data[i]));
+    console.log("всё хорошо");
+        var userList = req.getParameter("users");
+        console.log("log");
+        console.log(userList.toString());
+            for (var i = 0; i < userList.length; i++) {
+                $("#todolist_table tbody:last").append(loadtable(userList[i]));
             }
-        }
-    });
 }
 
 function loadtable(u) {

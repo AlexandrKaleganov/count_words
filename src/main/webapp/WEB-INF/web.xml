@@ -17,11 +17,42 @@
         <filter-name>AuthFilter</filter-name>
         <url-pattern>*</url-pattern>
     </filter-mapping>
+
     <!--    End filter-->
+    <display-name>count_word</display-name>
+    <!--    Start Listener-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:spring-context.xml</param-value>
+    </context-param>
+    <listener>
+        <listener-class>
+            org.springframework.web.context.ContextLoaderListener
+        </listener-class>
+    </listener>
+    <!--    End Listener-->
+    <!--Start Servlet-->
+    <servlet>
+        <servlet-name>appServlet</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                classpath:spring-context.xml
+            </param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+    <!--    End Servlet-->
     <!--Servlet for authorization-->
     <servlet>
         <servlet-name>SigninServlet</servlet-name>
-        <servlet-class>ru.callinsicght.countwords.container.SigninServlet</servlet-class>
+        <servlet-class>ru.callinsicght.countwords.controller.SigninServlet</servlet-class>
         <load-on-startup>0</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -31,7 +62,7 @@
     <!--    Servlet Index.jsp drawing of announcements, transfer on editing, viewing, removal of announcements-->
     <servlet>
         <servlet-name>ServletIndex</servlet-name>
-        <servlet-class>ru.callinsicght.countwords.container.ServletIndex</servlet-class>
+        <servlet-class>ru.callinsicght.countwords.controller.ServletIndex</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -39,19 +70,19 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <!--    servlet for work with users, obtaining the list, removal, an obavleniye of users-->
-    <servlet>
-        <servlet-name>ServletUserList</servlet-name>
-        <servlet-class>ru.callinsicght.countwords.container.users.ServletUserList</servlet-class>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletUserList</servlet-name>
-        <url-pattern>/listUser</url-pattern>
-    </servlet-mapping>
+<!--    <servlet>-->
+<!--        <servlet-name>ServletUserList</servlet-name>-->
+<!--        <servlet-class>ru.callinsicght.countwords.controller.users.ServletUserList</servlet-class>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>ServletUserList</servlet-name>-->
+<!--        <url-pattern>/listUser</url-pattern>-->
+<!--    </servlet-mapping>-->
     <!--    servlet for work with roles-->
     <servlet>
         <servlet-name>ServletRoles</servlet-name>
-        <servlet-class>ru.callinsicght.countwords.container.users.ServletRoles</servlet-class>
+        <servlet-class>ru.callinsicght.countwords.controller.users.ServletRoles</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
@@ -61,7 +92,7 @@
 <!--    list bd-->
     <servlet>
         <servlet-name>ServletDbList</servlet-name>
-        <servlet-class>ru.callinsicght.countwords.container.ServletDbList</servlet-class>
+        <servlet-class>ru.callinsicght.countwords.controller.ServletDbList</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>

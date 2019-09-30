@@ -1,6 +1,7 @@
-﻿$(document).ready(function anlist() {
-    // listan("findAllAn");
-});
+﻿// $(document).ready(function anlist() {
+//     console.log("запрос пошёл");
+//     // listan("findAllAn");
+// });
 
 /**
  * скрипты для отрисовывания таблицы списка объявлений
